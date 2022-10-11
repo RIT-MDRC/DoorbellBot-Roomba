@@ -19,16 +19,6 @@ def motor_fwd(bot, pwr):
         except KeyboardInterrupt:
             return
 
-def drive(bot, speed):
-    try:
-        bot.full()
-        bot.drive_direct(-speed, -speed)
-        input()
-        bot.drive_direct(speed, speed)
-        input()
-    except KeyboardInterrupt:
-        return
-
 def drive_motor_pwm(bot, pwr):
     try:
         bot.full()
@@ -38,6 +28,25 @@ def drive_motor_pwm(bot, pwr):
         input()
     except KeyboardInterrupt:
         return
+def drive_direct_pwm(bot, speed):
+	try:
+		bot.full()
+		bot.drive_pwm(-speed, -speed)
+		input()
+		bot.drive_pwm(speed, speed)
+		input()
+	except KeyboardInterrupt:
+		return
+
+def drive(bot, speed):
+    try:
+		bot.full()
+		bot.drive_direct(-speed, -speed)
+		input()
+		bot.drive_direct(speed, speed)
+		input()
+	except KeyboardInterrupt:
+		return
 
 def read_sensors(bot):
     while True:
@@ -56,7 +65,9 @@ def main():
     bot.full()
     # ascii_out(bot)
     # read_sensors(bot)
-    motor_fwd(bot, 100)
+    # motor_fwd(bot, 100)
+    # drive(bot, 500)
+    drive_pwm(bot, 255)
 
 if __name__ == "__main__":
     main()
