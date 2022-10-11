@@ -1,4 +1,4 @@
-from pycreate2 import Create2
+from ../pycreate2/create2api import Create2
 import time
 
 
@@ -19,14 +19,25 @@ def motor_fwd(bot, pwr):
         except KeyboardInterrupt:
             return
 
-def drive(bot):
+def drive(bot, speed):
     try:
-	bot.full()
-	bot.drive_direct(-500, -500)
-	input()
-	bot.drive_direct(500, 500)
+        bot.full()
+        bot.drive_direct(-speed, -speed)
+        input()
+        bot.drive_direct(speed, speed)
+        input()
     except KeyboardInterrupt:
-	return
+        return
+
+def drive_motor_pwm(bot, pwr):
+    try:
+        bot.full()
+        bot.motor_pwm(-pwr,-pwr)
+        input()
+        bot.motor_pwm(pwr, pwr)
+        input()
+    except KeyboardInterrupt:
+        return
 
 def read_sensors(bot):
     while True:
