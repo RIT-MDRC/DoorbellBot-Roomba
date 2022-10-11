@@ -19,6 +19,15 @@ def motor_fwd(bot, pwr):
         except KeyboardInterrupt:
             return
 
+def drive(bot):
+    try:
+	bot.full()
+	bot.drive_direct(-500, -500)
+	input()
+	bot.drive_direct(500, 500)
+    except KeyboardInterrupt:
+	return
+
 def read_sensors(bot):
     while True:
         try:
